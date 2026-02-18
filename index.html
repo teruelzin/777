@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>777</title>
+
+  <style>
+    :root{
+      --bg: #050505;          /* preto */
+      --panel: #0b0b0b;       /* preto mais claro */
+      --line: rgba(212,175,55,.22);  /* dourado suave */
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+
+      --gold: #d4af37;        /* dourado */
+      --gold2:#f2d27a;        /* dourado claro */
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(900px 600px at 50% -10%, rgba(212,175,55,.10), transparent 60%),
+        radial-gradient(700px 450px at 15% 20%, rgba(212,175,55,.08), transparent 55%),
+        radial-gradient(700px 450px at 85% 25%, rgba(212,175,55,.06), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 38px 16px 56px;
+    }
+
+    /* Topo clean */
+    .top{
+      text-align:center;
+      padding: 34px 18px 26px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
+    }
+
+    .top:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(650px 240px at 50% 0%, rgba(212,175,55,.15), transparent 65%);
+      pointer-events:none;
+      filter: blur(.5px);
+    }
+
+    .brand{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.25);
+      background: rgba(0,0,0,.25);
+    }
+
+    .dot{
+      width:12px;height:12px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--gold2), var(--gold));
+      box-shadow: 0 0 18px rgba(212,175,55,.28);
+    }
+
+    h1{
+      position:relative;
+      margin: 18px 0 16px;
+      font-size: clamp(40px, 6vw, 68px);
+      letter-spacing: .08em;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .btn{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(212,175,55,.40);
+      color: #111;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      font-weight: 900;
+      letter-spacing:.2px;
+      cursor:pointer;
+      text-decoration:none;
+      box-shadow: 0 18px 45px rgba(212,175,55,.10);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+    .btn:active{ transform: translateY(0px); filter: brightness(.98); }
+
+    main{
+      margin-top: 18px;
+      display:grid;
+      gap: 16px;
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .card h2:before{
+      content:"";
+      width:10px; height:10px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--gold2), var(--gold));
+      box-shadow: 0 0 16px rgba(212,175,55,.22);
+      flex: 0 0 auto;
+    }
+
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .steps{
+      margin: 12px 0 0;
+      padding: 0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+
+    .step{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(212,175,55,.20);
+      background: rgba(0,0,0,.22);
+    }
+
+    .num{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      color:#111;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      box-shadow: 0 12px 30px rgba(212,175,55,.10);
+      flex:0 0 auto;
+      margin-top: 2px;
+    }
+
+    .step b{ display:block; margin-bottom: 4px; color: rgba(255,255,255,.95); }
+    .step span{ color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 520px){
+      .top{ padding: 28px 14px 20px; }
+      .brand{ gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- 1) NOME 777 NO CENTRO (sem o texto da imagem 1) -->
+    <section class="top">
+      <div class="brand">
+        <div class="dot"></div>
+        <div style="color:rgba(255,255,255,.82); font-weight:800; letter-spacing:.12em;">777</div>
+      </div>
+
+      <h1>777</h1>
+
+      <a class="btn" href="https://discord.gg/RuDJwjpb7a" target="_blank" rel="noopener noreferrer">
+        Entre em contato ↗
+      </a>
+    </section>
+
+    <main>
+      <!-- 2) QUAL O TRAMPO -->
+      <section class="card">
+        <h2>Qual o trampo?</h2>
+        <p>
+          Nosso trampo funciona da seguinte forma, invadimos o servidor de pagamentos de casas de apostas, pegamos qr-code de deposito que ja foram pagos, voce pagará normalmente mas como o qr-code mas ja foi pago 
+antes entao ele nao ira pagar e dara erro no banco como se j  a fosse pago, o valor NAO vai sair da sua conta, cada qr-code q fazemos esse trabalho multiplicamos o valor 
+        </p>
+      </section>
+
+      <!-- 3) PASSO A PASSO -->
+      <section class="card">
+        <h2>Passo a passo</h2>
+
+        <ul class="steps">
+          <li class="step">
+            <div class="num">1</div>
+            <div>
+              <b>Passo 1</b>
+              <span>Voce precisa ter no minimo 150R$ (recomendamos 300R$) na conta que vc utilizara para fazer o trampo (mas fique tranquilo esse valor NAO ira sair da conta em nenhum momento).</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">2</div>
+            <div>
+              <b>Passo 2</b>
+              <span>Assim que voce apertar no nosso link e entrar em contato conosco (nos envie, seu nome, o banco q vc utilizara, uma chave pix aleatoria e o valor de saldo na conta q utilizara no trampo).</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">3</div>
+            <div>
+              <b>Passo 3</b>
+              <span>Temos que estar conectados e atento qualquer demora de comunicaçao pode afetar todo o processo e sermos pego pelo antivirus da plataforma .</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">4</div>
+            <div>
+              <b>Passo 4</b>
+              <span>Assim que vc me mandar as informaçoes q eu preciso, te enviarei o qr-code, ja pago e voce pagara normalmente, para dar o erro e conseguimos sacar na sua conta o erro deve ser por qr-code ja pago nao de saldo.</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">5</div>
+            <div>
+              <b>Passo 5</b>
+              <span>Assim que der o erro me envie imediatamente um print .</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">6</div>
+            <div>
+              <b>Passo 6</b>
+              <span>O trampo deve levar no max 3min por isso deve ter atençao e comunicaçao rapida .</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">7</div>
+            <div>
+              <b>Passo 7</b>
+              <span>Assim q o valor cair na conta nos envie 65% e fica com voce 35% 
+.</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>
